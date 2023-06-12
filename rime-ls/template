@@ -1,0 +1,30 @@
+# Template file for 'rime-ls'
+pkgname=rime-ls
+version=0.2.3
+revision=2
+archs="x86_64*"
+build_style=cargo
+hostmakedepends="clang"
+makedepends="librime-devel"
+short_desc="A language server for Rime input method engine"
+maintainer="zilch40 <wlh233@live.com>"
+license="BSD-3-Clause"
+homepage="https://github.com/wlh320/rime-ls"
+distfiles="https://github.com/wlh320/rime-ls/archive/refs/tags/v${version}.tar.gz"
+checksum="e1a2012760de5f7e79c32ee70a70bec3989f26b823fc45c34412b73129e30efe"
+
+post_extract() {
+    cd "$wrksrc"
+    cargo fetch --target "$XBPS_TARGET_MACHINE-unknown-linux-gnu"
+}
+
+do_build() {
+    cd "$wrksrc"
+    cargo build --release --frozen
+}
+
+do_install() {
+    cd "$wrksrc"
+    vbin target/release/rime_ls
+    vlicense LICENSE
+}
