@@ -7,6 +7,7 @@ Some packages for VoidLinux
 | packages                        | version                          |
 |------------------------------|------------------------------|
 | rime-ls                       |    0.2.3             |
+| clash                       |    1.14.0             |
 
 ## Usage
 
